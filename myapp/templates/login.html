@@ -1,0 +1,45 @@
+{% extends 'index.html' %}
+
+{% block main %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card auth_card_outer">
+                    <div class="card-header">
+                        Login
+                    </div>
+                    <div class="card-body auth_cards">
+                        <form action="{% url 'loginaction' %}" method="POST">
+                            {% csrf_token %}
+
+                            <div class="mt-2">
+                                {% for message in messages %}
+                                    <div class="alert alert-danger alert-dismissible fade show mt-2 mb-2" role="alert">
+                                      <i class="fa-solid fa-circle-xmark" style="margin-left: 5px"></i>{{ message }}
+                                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+
+                                {% endfor %}
+                            </div>
+                            <div class="mt-2">
+                                <label for="username">Username</label>
+                                <input type="text" name="username" id="username" required class="form-control">
+                            </div>
+                            <div class="mt-2">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="password" required class="form-control">
+                            </div>
+                            <div class="mt-4">
+                                <input type="submit" name="login" id="login" value="Login" class="btn btn-success">
+                            </div>
+                            <div class="mt-4">
+{#                                <p>Not yet registered? <a href="{% url 'signupform' %}"><b>Click to sign up</b></a></p>#}
+                            </div>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
